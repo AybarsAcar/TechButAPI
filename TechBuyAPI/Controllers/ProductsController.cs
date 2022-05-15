@@ -5,14 +5,14 @@ using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
 using Core.Specifications.QuerySpecifications;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechBuyAPI.DTOs;
+using TechBuyAPI.Errors;
 
 namespace TechBuyAPI.Controllers
 {
-  [ApiController]
-  [Route("api/[controller]")]
-  public class ProductsController : ControllerBase
+  public class ProductsController : BaseApiController
   {
     private readonly IRepository<Product> _productRepository;
     private readonly IRepository<ProductBrand> _productBrandRepository;
@@ -37,10 +37,17 @@ namespace TechBuyAPI.Controllers
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
     {
       var specification = new ProductsWithTypesAndBrands(id);
       var product = await _productRepository.GetWithSpecification(specification);
+
+      if (product == null)
+      {
+        return NotFound(new ApiResponse(404));
+      }
 
       return _mapper.Map<ProductToReturnDto>(product);
     }

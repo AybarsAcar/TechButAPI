@@ -1,14 +1,12 @@
-using Core.Interfaces;
 using Infrastructure.Data;
-using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using TechBuyAPI.Extensions;
 using TechBuyAPI.Mappers;
+using TechBuyAPI.Middleware;
 using TechBuyAPI.Utils;
 
 namespace TechBuyAPI
@@ -30,28 +28,31 @@ namespace TechBuyAPI
           options.JsonSerializerOptions.PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance;
         });
 
-      services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "TechBuyAPI", Version = "v1" }); });
+      services.AddSwaggerDocumentation();
 
       services.AddDbContext<StoreContext>(opt => { opt.UseNpgsql(_config.GetConnectionString("DefaultConnection")); });
-
-      services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-
+      
       services.AddAutoMapper(typeof(MappingProfiles));
+
+      services.AddApplicationServices();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-      if (env.IsDevelopment())
-      {
-        app.UseDeveloperExceptionPage();
-        app.UseSwagger();
-        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TechBuyAPI v1"));
-      }
+      // add custom middleware
+      app.UseMiddleware<ExceptionMiddleware>();
+
+      // Add Swagger API documentation
+      app.UseSwaggerDocumentation();
+
+      // when we don't have an endpoint for the request
+      // we are redirected here
+      app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
       app.UseHttpsRedirection();
 
       app.UseRouting();
-      
+
       // add static files - wwwroot folder
       app.UseStaticFiles();
 
