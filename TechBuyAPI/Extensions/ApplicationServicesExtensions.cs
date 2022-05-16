@@ -9,7 +9,6 @@ namespace TechBuyAPI.Extensions
 {
   public static class ApplicationServicesExtensions
   {
-    
     /// <summary>
     /// Extension method on the IServiceCollection
     /// to tidy up the Startup.cs
@@ -37,8 +36,10 @@ namespace TechBuyAPI.Extensions
           return new BadRequestObjectResult(errorResponse);
         };
       });
-      
+
       services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+
+      services.AddScoped<IBasketRepository, BasketRepository>();
 
       return services;
     }

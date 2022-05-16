@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 using TechBuyAPI.Extensions;
 using TechBuyAPI.Mappers;
 using TechBuyAPI.Middleware;
@@ -30,7 +31,16 @@ namespace TechBuyAPI
 
       services.AddSwaggerDocumentation();
 
+      // setup Postgresql
       services.AddDbContext<StoreContext>(opt => { opt.UseNpgsql(_config.GetConnectionString("DefaultConnection")); });
+
+      // setup Redis
+      services.AddSingleton<IConnectionMultiplexer, ConnectionMultiplexer>(c =>
+      {
+        var configuration = ConfigurationOptions.Parse(_config.GetConnectionString("Redis"), true);
+
+        return ConnectionMultiplexer.Connect(configuration);
+      });
 
       services.AddAutoMapper(typeof(MappingProfiles));
 
