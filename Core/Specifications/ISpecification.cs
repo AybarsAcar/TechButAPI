@@ -23,5 +23,32 @@ namespace Core.Specifications
     /// </summary>
     /// <returns></returns>
     List<Expression<Func<T, object>>> Includes { get; }
+   
+    /// <summary>
+    /// Specification to order the elements by a given Expression
+    /// </summary>
+    Expression<Func<T, object>> OrderBy { get; }
+    
+    /// <summary>
+    /// Specification to order the elements by a given Expression
+    /// </summary>
+    Expression<Func<T, object>> OrderByDescending { get; }
+    
+    /// <summary>
+    /// Pagination Property
+    /// request a number of items to be returned from the API
+    /// </summary>
+    int Take { get;  }
+    
+    /// <summary>
+    /// Pagination Property
+    /// Number of Items to be skipped when returning items from the API
+    /// </summary>
+    int Skip { get; }
+    
+    /// <summary>
+    /// Flag for enabling pagination
+    /// </summary>
+    bool IsPagingEnabled { get; }
   }
 }

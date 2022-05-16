@@ -38,5 +38,12 @@ namespace Core.Interfaces
     /// <param name="specification">Specifications could be includes / filter expressions</param>
     /// <returns></returns>
     Task<IReadOnlyList<T>> ListAsync(ISpecification<T> specification);
+
+    /// <summary>
+    /// Counts the number of items that is returned within Data of the response
+    /// </summary>
+    /// <param name="specification"></param>
+    /// <returns></returns>
+    Task<int> CountAsync(ISpecification<T> specification);
   }
 }

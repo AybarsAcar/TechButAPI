@@ -39,6 +39,11 @@ namespace Infrastructure.Repositories
       return await ApplySpecification(specification).ToListAsync();
     }
 
+    public async Task<int> CountAsync(ISpecification<T> specification)
+    {
+      return await ApplySpecification(specification).CountAsync();
+    }
+
     /// <summary>
     /// Applies the evaluator
     /// </summary>

@@ -31,10 +31,23 @@ namespace TechBuyAPI
       services.AddSwaggerDocumentation();
 
       services.AddDbContext<StoreContext>(opt => { opt.UseNpgsql(_config.GetConnectionString("DefaultConnection")); });
-      
+
       services.AddAutoMapper(typeof(MappingProfiles));
 
       services.AddApplicationServices();
+
+      services.AddCors(options =>
+      {
+        options.AddPolicy("CorsPolicy",
+          policy =>
+          {
+            policy
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .WithExposedHeaders("WWW-Authenticate", "Pagination")
+              .AllowAnyOrigin();
+          });
+      });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -55,6 +68,8 @@ namespace TechBuyAPI
 
       // add static files - wwwroot folder
       app.UseStaticFiles();
+
+      app.UseCors("CorsPolicy");
 
       app.UseAuthorization();
 

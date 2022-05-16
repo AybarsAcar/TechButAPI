@@ -28,6 +28,23 @@ namespace Infrastructure.Data
         query = query.Where(specification.Criteria);
       }
 
+      if (specification.OrderBy != null)
+      {
+        query = query.OrderBy(specification.OrderBy);
+      }
+
+      if (specification.OrderByDescending != null)
+      {
+        query = query.OrderByDescending(specification.OrderByDescending);
+      }
+
+      // apply paging if enabled
+      // paging MUST come after sorting and filtering
+      if (specification.IsPagingEnabled)
+      {
+        query = query.Skip(specification.Skip).Take(specification.Take);
+      }
+
       // evaluate the includes statements
       // if an empty list no includes will be added
       query = specification.Includes.Aggregate(query,

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechBuyAPI.DTOs;
 using TechBuyAPI.Errors;
+using TechBuyAPI.Utils;
 
 namespace TechBuyAPI.Controllers
 {
@@ -29,11 +30,20 @@ namespace TechBuyAPI.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ProductToReturnDto>>> GetProducts()
+    public async Task<ActionResult<PaginatedResponse<ProductToReturnDto>>> GetProducts(
+      [FromQuery] ProductSpecificationParams productParams)
     {
-      var specification = new ProductsWithTypesAndBrands();
+      var specification = new ProductsWithTypesAndBrands(productParams);
+      var countSpec = new ProductWithFiltersForCount(productParams);
+
+      var totalItems = await _productRepository.CountAsync(countSpec);
+
       var products = await _productRepository.ListAsync(specification);
-      return Ok(_mapper.Map<List<ProductToReturnDto>>(products));
+
+      var data = _mapper.Map<List<ProductToReturnDto>>(products);
+
+      return Ok(new PaginatedResponse<ProductToReturnDto>(productParams.PageIndex, productParams.PageSize, totalItems,
+        data));
     }
 
     [HttpGet("{id}")]
