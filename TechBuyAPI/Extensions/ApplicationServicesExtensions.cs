@@ -1,6 +1,7 @@
 using System.Linq;
 using Core.Interfaces;
 using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using TechBuyAPI.Errors;
@@ -40,6 +41,8 @@ namespace TechBuyAPI.Extensions
       services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 
       services.AddScoped<IBasketRepository, BasketRepository>();
+
+      services.AddScoped<ITokenService, TokenService>();
 
       return services;
     }

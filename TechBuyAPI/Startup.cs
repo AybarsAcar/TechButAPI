@@ -1,4 +1,5 @@
 using Infrastructure.Data;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,11 @@ namespace TechBuyAPI
       // setup Postgresql
       services.AddDbContext<StoreContext>(opt => { opt.UseNpgsql(_config.GetConnectionString("DefaultConnection")); });
 
+      services.AddDbContext<AppIdentityDbContext>(opt =>
+      {
+        opt.UseNpgsql(_config.GetConnectionString("IdentityConnection"));
+      });
+
       // setup Redis
       services.AddSingleton<IConnectionMultiplexer, ConnectionMultiplexer>(c =>
       {
@@ -45,6 +51,8 @@ namespace TechBuyAPI
       services.AddAutoMapper(typeof(MappingProfiles));
 
       services.AddApplicationServices();
+
+      services.AddIdentityServices(_config);
 
       services.AddCors(options =>
       {
@@ -80,6 +88,8 @@ namespace TechBuyAPI
       app.UseStaticFiles();
 
       app.UseCors("CorsPolicy");
+
+      app.UseAuthentication();
 
       app.UseAuthorization();
 

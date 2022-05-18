@@ -1,8 +1,12 @@
 using System;
 using System.Threading.Tasks;
+using Core.Entities.Identity;
 using Infrastructure.Data;
 using Infrastructure.Data.SeedData;
+using Infrastructure.Identity;
+using Infrastructure.Identity.Seed;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +30,7 @@ namespace TechBuyAPI
 
         try
         {
+          // seed product data
           var context = services.GetRequiredService<StoreContext>();
 
           // apply any pending migrations to the database and create database if it does not exist
@@ -33,6 +38,14 @@ namespace TechBuyAPI
           
           // seed data
           await StoreContextSeed.SeedAsync(context, loggerFactory);
+          
+          // seed the user data
+          var userManager = services.GetRequiredService<UserManager<AppUser>>();
+          var identityContext = services.GetRequiredService<AppIdentityDbContext>();
+
+          await identityContext.Database.MigrateAsync();
+
+          await AppIdentityDbContextSeed.SeedUsersAsync(userManager);
         }
         catch (Exception e)
         {

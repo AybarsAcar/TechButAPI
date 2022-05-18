@@ -1,4 +1,5 @@
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechBuyAPI.Errors;
 
@@ -40,6 +41,13 @@ namespace TechBuyAPI.Controllers
     public ActionResult GetBadRequestRequest(int id)
     {
       return Ok();
+    }
+
+    [HttpGet("test-auth")]
+    [Authorize]
+    public ActionResult<string> GetSecretText()
+    {
+      return "This is a secret string";
     }
   }
 }
