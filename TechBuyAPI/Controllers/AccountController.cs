@@ -56,6 +56,13 @@ namespace TechBuyAPI.Controllers
     [HttpPost("register")]
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
+      // check if the email already exists
+      if (await CheckEmailExistsAsync(registerDto.Email))
+      {
+        return new BadRequestObjectResult(new ApiValidationErrorResponse
+          { Errors = new[] { "Email address already exists" } });
+      }
+
       var user = new AppUser
       {
         DisplayName = registerDto.DisplayName,

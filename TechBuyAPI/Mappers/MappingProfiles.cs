@@ -3,6 +3,7 @@ using Core.Entities;
 using Core.Entities.Identity;
 using TechBuyAPI.DTOs;
 using TechBuyAPI.DTOs.Account;
+using TechBuyAPI.DTOs.Basket;
 
 namespace TechBuyAPI.Mappers
 {
@@ -30,6 +31,9 @@ namespace TechBuyAPI.Mappers
 
       CreateMap<Address, AddressDto>();
       CreateMap<AddressDto, Address>();
+
+      CreateMap<CustomerBasketDto, CustomerBasket>();
+      CreateMap<BasketItemDto, BasketItem>();
     }
   }
 }
