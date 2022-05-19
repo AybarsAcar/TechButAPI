@@ -1,6 +1,8 @@
 using AutoMapper;
 using Core.Entities;
+using Core.Entities.Identity;
 using TechBuyAPI.DTOs;
+using TechBuyAPI.DTOs.Account;
 
 namespace TechBuyAPI.Mappers
 {
@@ -25,6 +27,9 @@ namespace TechBuyAPI.Mappers
           destination => destination.ImageUrl,
           options => options.MapFrom<ProductUrlResolver>()
         );
+
+      CreateMap<Address, AddressDto>();
+      CreateMap<AddressDto, Address>();
     }
   }
 }

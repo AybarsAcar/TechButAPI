@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using Core.Entities.Identity;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TechBuyAPI.DTOs.Account;
 using TechBuyAPI.Errors;
+using TechBuyAPI.Extensions;
 
 namespace TechBuyAPI.Controllers
 {
@@ -15,13 +17,15 @@ namespace TechBuyAPI.Controllers
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly ITokenService _tokenService;
+    private readonly IMapper _mapper;
 
     public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-      ITokenService tokenService)
+      ITokenService tokenService, IMapper mapper)
     {
       _userManager = userManager;
       _signInManager = signInManager;
       _tokenService = tokenService;
+      _mapper = mapper;
     }
 
     [HttpPost("login")]
@@ -103,13 +107,27 @@ namespace TechBuyAPI.Controllers
 
     [HttpGet("address")]
     [Authorize]
-    public async Task<ActionResult<Address>> GetUserAddress()
+    public async Task<ActionResult<AddressDto>> GetUserAddress()
     {
-      var email = User.FindFirstValue(ClaimTypes.Email);
+      var user = await _userManager.FindUserByClaimsPrincipleWithAddressAsync(User);
 
-      var user = await _userManager.FindByEmailAsync(email);
+      return _mapper.Map<Address, AddressDto>(user.Address);
+    }
 
-      return user.Address;
+    [HttpPut("address")]
+    [Authorize]
+    public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto addressDto)
+    {
+      var user = await _userManager.FindUserByClaimsPrincipleWithAddressAsync(User);
+
+      // update the address in the user object
+      user.Address = _mapper.Map<AddressDto, Address>(addressDto);
+
+      var result = await _userManager.UpdateAsync(user);
+
+      if (!result.Succeeded) return BadRequest("Problem updating user addreess");
+
+      return Ok(_mapper.Map<Address, AddressDto>(user.Address));
     }
   }
 }
