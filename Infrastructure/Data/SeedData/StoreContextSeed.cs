@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Core.Entities;
+using Core.Entities.OrderAggregate;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Data.SeedData
@@ -39,7 +40,7 @@ namespace Infrastructure.Data.SeedData
           // submit changes to database 
           await context.SaveChangesAsync();
         }
-        
+
         if (!context.ProductTypes.Any())
         {
           var typesData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/types.json");
@@ -56,7 +57,7 @@ namespace Infrastructure.Data.SeedData
           // submit changes to database 
           await context.SaveChangesAsync();
         }
-        
+
         if (!context.Products.Any())
         {
           var productsData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/products.json");
@@ -68,6 +69,23 @@ namespace Infrastructure.Data.SeedData
           foreach (var item in products)
           {
             context.Products.Add(item);
+          }
+
+          // submit changes to database 
+          await context.SaveChangesAsync();
+        }
+
+        if (!context.DeliveryMethods.Any())
+        {
+          var deliveryMethodsData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/delivery.json");
+
+          // serialise the string
+          var deliveryMethods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryMethodsData);
+
+          // add to the database via the context
+          foreach (var deliveryMethod in deliveryMethods)
+          {
+            context.DeliveryMethods.Add(deliveryMethod);
           }
 
           // submit changes to database 

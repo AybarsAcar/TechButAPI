@@ -45,5 +45,26 @@ namespace Core.Interfaces
     /// <param name="specification"></param>
     /// <returns></returns>
     Task<int> CountAsync(ISpecification<T> specification);
+
+    /// <summary>
+    /// we wont be adding directly to the database
+    /// we want to add it so track it - happens in memory
+    /// begin tracking the entity into the added state so it could be saved into the database when
+    /// SaveChanges is called
+    /// </summary>
+    /// <param name="entity"></param>
+    void Add(T entity);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entity"></param>
+    void Update(T entity);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entity"></param>
+    void Delete(T entity);
   }
 }
