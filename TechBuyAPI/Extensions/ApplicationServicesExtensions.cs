@@ -2,6 +2,7 @@ using System.Linq;
 using Core.Interfaces;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
+using Infrastructure.Services.Payment;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using TechBuyAPI.Errors;
@@ -38,15 +39,16 @@ namespace TechBuyAPI.Extensions
         };
       });
 
+      // add repositories
       services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-
       services.AddScoped<IBasketRepository, BasketRepository>();
 
-      services.AddScoped<ITokenService, TokenService>();
-
-      services.AddScoped<IOrderService, OrderService>();
-
       services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+      // add services
+      services.AddScoped<ITokenService, TokenService>();
+      services.AddScoped<IOrderService, OrderService>();
+      services.AddScoped<IPaymentService, PaymentService>();
 
       return services;
     }
