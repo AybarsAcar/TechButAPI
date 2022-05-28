@@ -23,4 +23,25 @@
       <Folder Include="wwwroot" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\products\boot-ang1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\boot-ang2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\boot-core1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\boot-core2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\boot-redis1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\glove-code1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\glove-code2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\glove-react1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\glove-react2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\hat-core1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\hat-react1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\hat-react2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\sb-ang1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\sb-ang2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\sb-core1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\sb-core2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\sb-react1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\products\sb-ts1.png" />
+    </ItemGroup>
+
 </Project>

@@ -1,146 +1,146 @@
 [
   {
-    "Name": "Angular Speedster Board 2000",
+    "Name": "Apple Watch",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 200,
-    "ImageUrl": "images/products/sb-ang1.png",
+    "Price": 800,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653777287/watch_lxm5do.png",
     "ProductTypeId": 1,
     "ProductBrandId": 1
   },
   {
-    "Name": "Green Angular Board 3000",
+    "Name": "iPad Air 4",
     "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-    "Price": 150,
-    "ImageUrl": "images/products/sb-ang2.png",
-    "ProductTypeId": 1,
+    "Price": 1000,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653777283/tablet_rgxfgh.png",
+    "ProductTypeId": 2,
     "ProductBrandId": 1
   },
   {
-    "Name": "Core Board Speed Rush 3",
+    "Name": "iPhone 13 Pro",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 180,
-    "ImageUrl": "images/products/sb-core1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 2
+    "Price": 1200,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653777278/phone_gbdjxc.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 1
   },
   {
-    "Name": "Net Core Super Board",
+    "Name": "MacBook Pro",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 300,
-    "ImageUrl": "images/products/sb-core2.png",
-    "ProductTypeId": 1,
+    "Price": 2000,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653777269/laptop_ctrb9z.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Sony XM 4",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 350,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653777262/headphone_cjz8fp.png",
+    "ProductTypeId": 5,
     "ProductBrandId": 2
   },
   {
-    "Name": "React Board Super Whizzy Fast",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 250,
-    "ImageUrl": "images/products/sb-react1.png",
-    "ProductTypeId": 1,
+    "Name": "Raspberry Pi",
+    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
+    "Price": 180,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653777254/Raspberry-Pi_gcvyaf.png",
+    "ProductTypeId": 6,
     "ProductBrandId": 4
   },
   {
-    "Name": "Typescript Entry Board",
-    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-    "Price": 120,
-    "ImageUrl": "images/products/sb-ts1.png",
+    "Name": "Apple Watch Hermes",
+    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 4000,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653777745/apple-watch-hermess_dbpc5m.png",
     "ProductTypeId": 1,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Dell Laptop",
+    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 3000,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653777816/dell-laptop_k4kzuy.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 3
+  },
+  {
+    "Name": "Alienware Laptop",
+    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 3600,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653777862/alienware-laptop_fvesbe.png",
+    "ProductTypeId": 4,
     "ProductBrandId": 5
   },
   {
-    "Name": "Core Blue Hat",
-    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 10,
-    "ImageUrl": "images/products/hat-core1.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Green React Woolen Hat",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 8,
-    "ImageUrl": "images/products/hat-react1.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Purple React Woolen Hat",
-    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 15,
-    "ImageUrl": "images/products/hat-react2.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Blue Code Gloves",
+    "Name": "iPhone SE 2",
     "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-    "Price": 18,
-    "ImageUrl": "images/products/glove-code1.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 3
+    "Price": 599,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653778076/iphone-se-2_pemuv9.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 1
   },
   {
-    "Name": "Green Code Gloves",
+    "Name": "iMac Pro 27",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 15,
-    "ImageUrl": "images/products/glove-code2.png",
+    "Price": 4899,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653778246/imac-pro_sxtx2w.png",
     "ProductTypeId": 4,
-    "ProductBrandId": 3
+    "ProductBrandId": 1
   },
   {
-    "Name": "Purple React Gloves",
+    "Name": "Samsung Galaxy A53",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
-    "Price": 16,
-    "ImageUrl": "images/products/glove-react1.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Green React Gloves",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 14,
-    "ImageUrl": "images/products/glove-react2.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Redis Red Boots",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 250,
-    "ImageUrl": "images/products/boot-redis1.png",
+    "Price": 1299,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653778462/samsung-galaxy-a53_qnts0w.png",
     "ProductTypeId": 3,
     "ProductBrandId": 6
   },
   {
-    "Name": "Core Red Boots",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 189.99,
-    "ImageUrl": "images/products/boot-core2.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Core Purple Boots",
+    "Name": "Playstation 5",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 199.99,
-    "ImageUrl": "images/products/boot-core1.png",
-    "ProductTypeId": 3,
+    "Price": 599,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653778582/playstation5_ssld4p.png",
+    "ProductTypeId": 6,
     "ProductBrandId": 2
   },
   {
-    "Name": "Angular Purple Boots",
-    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-    "Price": 150,
-    "ImageUrl": "images/products/boot-ang2.png",
-    "ProductTypeId": 3,
+    "Name": "HP Pavilion",
+    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 1099,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653778689/hp-pavilion_ywvfyd.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 7
+  },
+  {
+    "Name": "Air Pods Pro",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 399.99,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653778857/airpods-pro_tfb5l4.png",
+    "ProductTypeId": 5,
     "ProductBrandId": 1
   },
   {
-    "Name": "Angular Blue Boots",
+    "Name": "Air Pods Pro Max",
+    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 599.99,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653778974/airpods-pro-max_vynfja.png",
+    "ProductTypeId": 5,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "MX Master 3",
+    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
+    "Price": 120,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653779094/mx-master-3_vy6mfq.png",
+    "ProductTypeId": 6,
+    "ProductBrandId": 8
+  },
+  {
+    "Name": "Apple Magic Keyboard",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 180,
-    "ImageUrl": "images/products/boot-ang1.png",
-    "ProductTypeId": 3,
+    "Price": 109,
+    "ImageUrl": "https://res.cloudinary.com/ddngwhjkk/image/upload/v1653779212/magic-keyboard_bzlxd0.png",
+    "ProductTypeId": 6,
     "ProductBrandId": 1
   }
 ]

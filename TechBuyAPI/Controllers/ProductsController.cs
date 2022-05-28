@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
-using Core.Specifications;
 using Core.Specifications.QuerySpecifications;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

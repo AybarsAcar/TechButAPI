@@ -25,12 +25,8 @@ namespace TechBuyAPI.Mappers
           options => options.MapFrom(
             source => source.ProductType.Name
           )
-        )
-        .ForMember(
-          destination => destination.ImageUrl,
-          options => options.MapFrom<ProductUrlResolver>()
         );
-
+      
       CreateMap<Core.Entities.Identity.Address, AddressDto>();
       CreateMap<AddressDto, Address>();
 
@@ -71,10 +67,6 @@ namespace TechBuyAPI.Mappers
           options => options.MapFrom(
             source => source.ItemOrdered.ImageUrl
           )
-        )
-        .ForMember(
-          destination => destination.ImageUrl,
-          options => options.MapFrom<OrderItemUrlResolver>()
         );
     }
   }

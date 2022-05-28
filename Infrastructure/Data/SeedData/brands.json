@@ -1,26 +1,34 @@
 [
   {
     "Id": 1,
-    "Name": "Angular"
+    "Name": "Apple"
   },
   {
     "Id": 2,
-    "Name": "NetCore"
+    "Name": "Sony"
   },
   {
     "Id": 3,
-    "Name": "VS Code"
+    "Name": "Dell"
   },
   {
     "Id": 4,
-    "Name": "React"
+    "Name": "Raspberry Pi"
   },
   {
     "Id": 5,
-    "Name": "Typescript"
+    "Name": "Alienware"
   },
   {
     "Id": 6,
-    "Name": "Redis"
+    "Name": "Samsung"
+  },
+  {
+    "Id": 7,
+    "Name": "HP"
+  },
+  {
+    "Id": 8,
+    "Name": "Logitech"
   }
 ]
