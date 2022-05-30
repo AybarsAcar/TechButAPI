@@ -70,7 +70,7 @@ namespace TechBuyAPI.Extensions
         {
           // Following executes in Production
           // Use connection string provided at runtime by Heroku.
-          var connUrl = Environment.GetEnvironmentVariable("HEROKU_POSTGRESQL_OLIVE_URLs");
+          var connUrl = Environment.GetEnvironmentVariable("HEROKU_POSTGRESQL_OLIVE_URL");
 
           // Parse connection URL to connection string for Npgsql
           connUrl = connUrl.Replace("postgres://", string.Empty);
