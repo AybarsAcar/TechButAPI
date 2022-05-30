@@ -33,12 +33,7 @@ namespace TechBuyAPI
       services.AddSwaggerDocumentation();
 
       // setup Postgresql
-      services.AddDbContext<StoreContext>(opt => { opt.UseNpgsql(_config.GetConnectionString("DefaultConnection")); });
-
-      services.AddDbContext<AppIdentityDbContext>(opt =>
-      {
-        opt.UseNpgsql(_config.GetConnectionString("IdentityConnection"));
-      });
+      services.AddPostgresDatabaseServices(_config);
 
       // setup Redis
       services.AddSingleton<IConnectionMultiplexer, ConnectionMultiplexer>(c =>
