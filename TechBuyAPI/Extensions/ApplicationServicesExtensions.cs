@@ -7,50 +7,49 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using TechBuyAPI.Errors;
 
-namespace TechBuyAPI.Extensions
+namespace TechBuyAPI.Extensions;
+
+public static class ApplicationServicesExtensions
 {
-  public static class ApplicationServicesExtensions
+  /// <summary>
+  /// Extension method on the IServiceCollection
+  /// to tidy up the Startup.cs
+  /// this method contains custom dependencies and configurations injected to the application
+  /// </summary>
+  /// <param name="services"></param>
+  /// <returns></returns>
+  public static IServiceCollection AddApplicationServices(this IServiceCollection services)
   {
-    /// <summary>
-    /// Extension method on the IServiceCollection
-    /// to tidy up the Startup.cs
-    /// this method contains custom dependencies and configurations injected to the application
-    /// </summary>
-    /// <param name="services"></param>
-    /// <returns></returns>
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    services.Configure<ApiBehaviorOptions>(options =>
     {
-      services.Configure<ApiBehaviorOptions>(options =>
+      options.InvalidModelStateResponseFactory = actionContext =>
       {
-        options.InvalidModelStateResponseFactory = actionContext =>
+        var errors = actionContext.ModelState
+          .Where(e => e.Value.Errors.Count > 0)
+          .SelectMany(x => x.Value.Errors)
+          .Select(x => x.ErrorMessage)
+          .ToArray();
+
+        var errorResponse = new ApiValidationErrorResponse
         {
-          var errors = actionContext.ModelState
-            .Where(e => e.Value.Errors.Count > 0)
-            .SelectMany(x => x.Value.Errors)
-            .Select(x => x.ErrorMessage)
-            .ToArray();
-
-          var errorResponse = new ApiValidationErrorResponse
-          {
-            Errors = errors
-          };
-
-          return new BadRequestObjectResult(errorResponse);
+          Errors = errors
         };
-      });
 
-      // add repositories
-      services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-      services.AddScoped<IBasketRepository, BasketRepository>();
+        return new BadRequestObjectResult(errorResponse);
+      };
+    });
 
-      services.AddScoped<IUnitOfWork, UnitOfWork>();
+    // add repositories
+    services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+    services.AddScoped<IBasketRepository, BasketRepository>();
 
-      // add services
-      services.AddScoped<ITokenService, TokenService>();
-      services.AddScoped<IOrderService, OrderService>();
-      services.AddScoped<IPaymentService, PaymentService>();
+    services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-      return services;
-    }
+    // add services
+    services.AddScoped<ITokenService, TokenService>();
+    services.AddScoped<IOrderService, OrderService>();
+    services.AddScoped<IPaymentService, PaymentService>();
+
+    return services;
   }
 }

@@ -7,67 +7,66 @@ using TechBuyAPI.DTOs.Basket;
 using TechBuyAPI.DTOs.Order;
 using Address = Core.Entities.Identity.Address;
 
-namespace TechBuyAPI.Mappers
+namespace TechBuyAPI.Mappers;
+
+public class MappingProfiles : Profile
 {
-  public class MappingProfiles : Profile
+  public MappingProfiles()
   {
-    public MappingProfiles()
-    {
-      CreateMap<Product, ProductToReturnDto>()
-        .ForMember(
-          destination => destination.ProductBrand,
-          options => options.MapFrom(
-            source => source.ProductBrand.Name
-          )
+    CreateMap<Product, ProductToReturnDto>()
+      .ForMember(
+        destination => destination.ProductBrand,
+        options => options.MapFrom(
+          source => source.ProductBrand.Name
         )
-        .ForMember(
-          destination => destination.ProductType,
-          options => options.MapFrom(
-            source => source.ProductType.Name
-          )
-        );
-      
-      CreateMap<Core.Entities.Identity.Address, AddressDto>();
-      CreateMap<AddressDto, Address>();
-
-      CreateMap<CustomerBasketDto, CustomerBasket>();
-      CreateMap<BasketItemDto, BasketItem>();
-
-      CreateMap<AddressDto, Core.Entities.OrderAggregate.Address>();
-
-      CreateMap<Order, OrderToReturnDto>()
-        .ForMember(
-          destination => destination.DeliveryMethod,
-          options => options.MapFrom(
-            source => source.DeliveryMethod.ShortName
-          )
+      )
+      .ForMember(
+        destination => destination.ProductType,
+        options => options.MapFrom(
+          source => source.ProductType.Name
         )
-        .ForMember(
-          destination => destination.ShippingPrice,
-          options => options.MapFrom(
-            source => source.DeliveryMethod.Price
-          )
-        );
+      );
 
-      CreateMap<OrderItem, OrderItemDto>()
-        .ForMember(
-          destination => destination.ProductId,
-          options => options.MapFrom(
-            source => source.ItemOrdered.ProductItemId
-          )
+    CreateMap<Core.Entities.Identity.Address, AddressDto>();
+    CreateMap<AddressDto, Address>();
+
+    CreateMap<CustomerBasketDto, CustomerBasket>();
+    CreateMap<BasketItemDto, BasketItem>();
+
+    CreateMap<AddressDto, Core.Entities.OrderAggregate.Address>();
+
+    CreateMap<Order, OrderToReturnDto>()
+      .ForMember(
+        destination => destination.DeliveryMethod,
+        options => options.MapFrom(
+          source => source.DeliveryMethod.ShortName
         )
-        .ForMember(
-          destination => destination.ProductName,
-          options => options.MapFrom(
-            source => source.ItemOrdered.ProductName
-          )
+      )
+      .ForMember(
+        destination => destination.ShippingPrice,
+        options => options.MapFrom(
+          source => source.DeliveryMethod.Price
         )
-        .ForMember(
-          destination => destination.ImageUrl,
-          options => options.MapFrom(
-            source => source.ItemOrdered.ImageUrl
-          )
-        );
-    }
+      );
+
+    CreateMap<OrderItem, OrderItemDto>()
+      .ForMember(
+        destination => destination.ProductId,
+        options => options.MapFrom(
+          source => source.ItemOrdered.ProductItemId
+        )
+      )
+      .ForMember(
+        destination => destination.ProductName,
+        options => options.MapFrom(
+          source => source.ItemOrdered.ProductName
+        )
+      )
+      .ForMember(
+        destination => destination.ImageUrl,
+        options => options.MapFrom(
+          source => source.ItemOrdered.ImageUrl
+        )
+      );
   }
 }

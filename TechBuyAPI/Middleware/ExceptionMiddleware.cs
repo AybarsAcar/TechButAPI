@@ -8,52 +8,51 @@ using Microsoft.Extensions.Logging;
 using TechBuyAPI.Errors;
 using TechBuyAPI.Utils;
 
-namespace TechBuyAPI.Middleware
+namespace TechBuyAPI.Middleware;
+
+/// <summary>
+/// Middleware to handle the exception
+/// </summary>
+public class ExceptionMiddleware
 {
-  /// <summary>
-  /// Middleware to handle the exception
-  /// </summary>
-  public class ExceptionMiddleware
+  private readonly RequestDelegate _next;
+  private readonly ILogger<ExceptionMiddleware> _logger;
+  private readonly IHostEnvironment _env;
+
+  public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
   {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionMiddleware> _logger;
-    private readonly IHostEnvironment _env;
+    _next = next;
+    _logger = logger;
+    _env = env;
+  }
 
-    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
+  public async Task InvokeAsync(HttpContext context)
+  {
+    try
     {
-      _next = next;
-      _logger = logger;
-      _env = env;
+      // if there is no exception move onto the next stage
+      await _next(context);
     }
-
-    public async Task InvokeAsync(HttpContext context)
+    catch (Exception e)
     {
-      try
+      _logger.LogError(e, e.Message);
+
+      context.Response.ContentType = "application/json";
+      context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+      // write out a response
+      var response = _env.IsDevelopment()
+        ? new ApiException((int)HttpStatusCode.InternalServerError, e.Message, e.StackTrace)
+        : new ApiException((int)HttpStatusCode.InternalServerError);
+
+      var options = new JsonSerializerOptions
       {
-        // if there is no exception move onto the next stage
-        await _next(context);
-      }
-      catch (Exception e)
-      {
-        _logger.LogError(e, e.Message);
+        PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance
+      };
 
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        
-        // write out a response
-        var response = _env.IsDevelopment()
-          ? new ApiException((int)HttpStatusCode.InternalServerError, e.Message, e.StackTrace)
-          : new ApiException((int)HttpStatusCode.InternalServerError);
+      var json = JsonSerializer.Serialize(response, options);
 
-        var options = new JsonSerializerOptions
-        {
-          PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance
-        };
-        
-        var json = JsonSerializer.Serialize(response, options);
-
-        await context.Response.WriteAsync(json);
-      }
+      await context.Response.WriteAsync(json);
     }
   }
 }
